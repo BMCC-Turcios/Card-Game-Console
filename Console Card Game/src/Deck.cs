@@ -8,7 +8,7 @@ namespace CardGame
     /// </summary>
     public class Deck
     {
-        private readonly List<Card> cards = new List<Card>();
+        private List<Card> cards = new List<Card>();
         /// <summary>
         /// Returns true or false if deck is empty
         /// </summary>
@@ -52,7 +52,7 @@ namespace CardGame
             Card topCard = null;
             if (cards.Count != 0)
             {
-                topCard = cards[^1];// ^1 looks at the end of the list 
+                topCard = cards[cards.Count - 1];
                 cards.RemoveAt(cards.Count - 1);
             }
                 return topCard;

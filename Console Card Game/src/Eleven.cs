@@ -20,7 +20,7 @@
         /// Check if conditions to remove are three cards that are King, Queen, Jack, or Cards that add up to 11.
         /// </summary>
         /// <returns></returns>
-        protected override bool CheckConditions()
+        public override bool ConditionToRemove()
         {
             if (SelectedCardsOnBoard.Count == 3)
             {

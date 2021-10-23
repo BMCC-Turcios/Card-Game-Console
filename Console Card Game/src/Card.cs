@@ -2,6 +2,7 @@
 
 namespace CardGame
 {
+    
     /// <summary>
     /// Enums that represent ran
     /// </summary>
@@ -31,11 +32,13 @@ namespace CardGame
         Clubs = '♣',
         Spade = '♠'
     }
+
     /// <summary>
     /// A class that represents a playing card
     /// </summary>
     public class Card : IEquatable<Card>
     {
+
         public Rank Rank { get; private set; }
         public Suit Suit { get; private set; }
         public bool Selected { get; private set; }

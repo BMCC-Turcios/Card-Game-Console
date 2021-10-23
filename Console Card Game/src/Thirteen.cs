@@ -11,13 +11,13 @@
         /// <summary>
         ///Constructor sends the size of board is 10
         /// </summary>
-        public Thirteen() : base(10) { }
-        public override int GameType { get { return TEN; } }
+        public Thirteen() : base(TEN) { }
+        public override int GameType { get { return THIRTEEN; } }
         /// <summary>
         /// Thirteen game conditon to remove cards from board
         /// </summary>
         /// <returns>True if either one kind is selected or cards add up to thirteen</returns>
-        protected override bool CheckConditions()
+        public override bool ConditionToRemove()
         {
 
             if (SelectedCardsOnBoard.Count == 1)

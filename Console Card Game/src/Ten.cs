@@ -11,7 +11,7 @@
         /// <summary>
         /// Constructor that sends the base class Game the size of board
         /// </summary>
-        public Ten() : base(13) { }
+        public Ten() : base(THIRTEEN) { }
         /// <summary>
         /// Gets the current game type set to return Game.TEN
         /// </summary>
@@ -20,7 +20,7 @@
         /// Ten game conditon to remove cards from board
         /// </summary>
         /// <returns>Return true if selected card are four of the same rank,is a King, Queen, Jack, Ten, or if two cards add up to Ten</returns>
-        protected override bool CheckConditions()
+        public override bool ConditionToRemove()
         {
             if (SelectedCardsOnBoard.Count == 4)
             {

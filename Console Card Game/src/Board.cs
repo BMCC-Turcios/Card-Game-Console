@@ -15,6 +15,7 @@ namespace CardGame
 
         protected Board(int sizeOfBoard)
         {
+            SelectedCardsOnBoard = new List<Card>();
             CardsOnBoard = new List<Card>();
             MaxCard = sizeOfBoard;
             Reset();
@@ -38,19 +39,24 @@ namespace CardGame
         public void Remove()
         {
             CardsOnBoard.RemoveAll(card => card.Selected == true);
+            SelectedCardsOnBoard.Clear();
         }
         /// <summary>
         /// Replace cards on the board till it shows the maximum cards that should be on the board
         /// </summary>
         public void Replace()
         {
-            if (deck.Count == 0)
+            if (deck.Count != 0)
             {
                 int CardsToAdd = MaxCard - CardsOnBoard.Count;
-
+                Card topcard;
                 for (int i = 0; i < CardsToAdd; i++)
                 {
-                    CardsOnBoard.Add(deck.TakeTopCard());
+                    topcard = deck.TakeTopCard();
+                    if (topcard == null) return;
+                        CardsOnBoard.Add(topcard);
+
+                    
                 }
             }
         }
@@ -72,13 +78,14 @@ namespace CardGame
                 {
                     Console.WriteLine(card.ToString() + "Could not be found");
                 }
+                SelectedCardsOnBoard = CardsOnBoard.FindAll(card => card.Selected == true);
             }
         }
         protected bool CardAddUp(int sumOfCards)
         {
             if (SelectedCardsOnBoard.Count == 2)
             {
-                return (int)SelectedCardsOnBoard[0].Rank + (int)SelectedCardsOnBoard[2].Rank == sumOfCards;
+                return (int)SelectedCardsOnBoard[0].Rank + (int)SelectedCardsOnBoard[1].Rank + 2 == sumOfCards;
             }
 
             return false;
@@ -101,7 +108,17 @@ namespace CardGame
             {
                 board += card.ToString() + " ";
             }
-            Console.WriteLine(board + "Cards left in deck: " + deck.Count);
+            Console.WriteLine(board + "\nCards left in deck: " + deck.Count);
+            if(SelectedCardsOnBoard.Count != 0)
+            {
+                board = "";
+                foreach(Card card in SelectedCardsOnBoard)
+                {
+                    board += card.ToString() + " ";
+                }
+                Console.WriteLine("Cards selected\n" + board);
+            }
+
         }
     }   
 }

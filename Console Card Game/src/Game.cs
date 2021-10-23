@@ -18,7 +18,7 @@ namespace CardGame
         /// </summary>
         public const int THIRTEEN = 13;
 
-        private Dictionary<string, int> leaderboard;
+        public Dictionary<string, int> Leaderboard { get; private set; }
         public string PlayerName { get; private set; }
         /// <summary>
         /// Gets the boolean value if the player has surrenered 
@@ -28,9 +28,12 @@ namespace CardGame
         /// gets the type of game
         /// </summary>
         public abstract int GameType { get; }
-        protected Game(int sizeOfBoard) : base(sizeOfBoard) { }
+        protected Game(int sizeOfBoard) : base(sizeOfBoard) 
+        {
+            PlayerName = "PLAYER";
+            Leaderboard = new IOScore(GameType).GetLeaderBoard();
+        }
 
-        protected abstract bool CheckConditions();
         /// <summary>
         /// Factory method that creates an instancei of a subclass of game
         /// </summary>
@@ -55,21 +58,31 @@ namespace CardGame
         /// Collects all the selected cards anc check if the conditions of the game allows for player to remove the cards
         /// </summary>
         /// <returns>Returns true if cards can be removed</returns>
-        public bool ConditionToRemove()
-        {
-            SelectedCardsOnBoard = CardsOnBoard.FindAll(card => card.Selected == true);
-            return CheckConditions();
-        }
+        public abstract bool ConditionToRemove();
+ 
         /// <summary>
         /// Adds player to the leaderboard
         /// </summary>
-        public void addToLeadrBoard()
+        public void AddToLeadrBoard()
         {
-            if (!leaderboard.TryAdd(PlayerName, 1))
+            if (!Leaderboard.TryAdd(PlayerName, 1))
             {
-                leaderboard[PlayerName]++;
+                Leaderboard[PlayerName]++;
             }
         }
+
+        public void PrintHighScore()
+        {
+            Console.Clear();
+            Console.WriteLine("Name Score");
+            foreach(var score in Leaderboard)
+            {
+                Console.WriteLine(score.Key + " " + score.Value);
+            }
+            Console.WriteLine("press any key to continue");
+            Console.ReadKey();
+        }
+
         /// <summary>
         /// Checks if player is still playing after 10s the player is checked as surrenered
         /// </summary>
