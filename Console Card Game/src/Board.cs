@@ -116,7 +116,10 @@ namespace CardGame
                 {
                     board += card.ToString() + " ";
                 }
-                Console.WriteLine("Cards selected\n" + board);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("cards selected:");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(board);
             }
 
         }

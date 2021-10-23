@@ -15,6 +15,7 @@ namespace CardGame
         public const string FORFIET = "FORFIET";
         public const string HIGHSCORE = "HIGHSCORE";
         public const string CHANGENAME = "CHANGENAME";
+        public const string SHOWCOMMANDS = "SHOWCOMMANDS";
         private string Token { get; set; }
         private string[] CommandLine { get; set; }
 
@@ -49,12 +50,34 @@ namespace CardGame
                 case CHANGENAME:
                     gameObj.ChangeName(CommandLine[0]);
                     break;
-
+                case SHOWCOMMANDS:
+                    ShowCommands();
+                    break;
                 default:
                     break;
 
             }
         }
+        /// <summary>
+        /// prints all commands to the console screen
+        /// </summary>
+        private static void ShowCommands()
+        {
+            Console.Clear();
+            Console.WriteLine("List of commands");
+            Console.WriteLine(SELECT);
+            Console.WriteLine(REMOVE);
+            Console.WriteLine(REPLACE);
+            Console.WriteLine(FORFIET);
+            Console.WriteLine(HIGHSCORE);
+            Console.WriteLine(CHANGENAME);
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+        }
+        /// <summary>
+        /// converts a string input into a token and commands
+        /// </summary>
+        /// <param name="input"></param>
         public void GetCommand(string input)
         {
             CommandLine = input.Split(' ');
@@ -65,7 +88,7 @@ namespace CardGame
         /// creates a list of cards the player wishes to send to game object
         /// </summary>
         /// <param name="array_cards"></param>
-        /// <returns></returns>
+        /// <returns>a list of cards</returns>
         private List<Card> MakeListOfCards(string[] array_cards)
         {
             List<Card> listOfCard = new List<Card>();
@@ -80,7 +103,11 @@ namespace CardGame
 
             return listOfCard;
         }
-
+        /// <summary>
+        /// Creates a card from a two charchter string
+        /// </summary>
+        /// <param name="str_card"></param>
+        /// <returns>a card or null if the card could not be created</returns>
         private Card MakeCard(string str_card)
         {
             if (!IsStringAValidCard(str_card)) return null;
@@ -92,7 +119,11 @@ namespace CardGame
         }
 
         
-
+        /// <summary>
+        /// Check is the stirng in the parameter is a valid card
+        /// </summary>
+        /// <param name="str_card"></param>
+        /// <returns>true if card can be created false if an exception was thrown</returns>
         private bool IsStringAValidCard(string str_card)
         {
             if (str_card.Length != 2) return false; //guard clause
@@ -110,7 +141,11 @@ namespace CardGame
 
             return hasNotThrownException;
         }
-
+        /// <summary>
+        /// converts the a char into a suit
+        /// </summary>
+        /// <param name="suit"></param>
+        /// <returns>a Suit enum type or an exception</returns>
         private Suit GetSuit(char suit)
         {
             switch (suit)
@@ -125,7 +160,11 @@ namespace CardGame
                     return Suit.Spade;
             }
             throw new Exception();
-        }
+        }/// <summary>
+        /// Converts char to a Rank
+        /// </summary>
+        /// <param name="rank"></param>
+        /// <returns>a Rank enum type or throws an exception</returns>
         private Rank GetRank(char rank)
         {
             switch (rank)

@@ -8,6 +8,7 @@ namespace CardGame
     {
         static void Main(string[] args)
         {
+            Console.Title = "Console Card Game";
             Game game;
             Command command = new Command();
             do
@@ -67,8 +68,12 @@ namespace CardGame
         {
             while (!(game.HasWon() || game.HasSurrendered))
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("Type showcommands to see commands");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Player name: " + game.PlayerName);
                 game.printBoard();
+                
                 command.GetCommand(Console.ReadLine().ToUpper());
                 command.ExecuteCommand(game);
                 Console.Clear();

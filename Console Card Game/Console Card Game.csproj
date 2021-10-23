@@ -6,4 +6,8 @@
     <RootNamespace>Console_Card_Game</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="pdf_docFx\" />
+  </ItemGroup>
+
 </Project>

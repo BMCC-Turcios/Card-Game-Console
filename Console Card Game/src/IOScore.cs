@@ -12,7 +12,7 @@ namespace CardGame
         public IOScore(int gameType)
         {
             string workingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            filePath = $"{workingDirectory}{gameType}_leaderboard.txt";
+            filePath = $"{workingDirectory}\\{gameType}_leaderboard.txt";
 
             
 

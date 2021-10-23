@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace CardGame
 {
+    /// <summary>
+    /// A Abstract class that can represent one of the three game Ten, Eleven, Thirteen
+    /// </summary>
     abstract public class Game : Board
     {
         /// <summary>

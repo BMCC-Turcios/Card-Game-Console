@@ -1,0 +1,116 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1240</x><y>257</y><w>210</w><h>190</h></coordinates><panel_attributes>Card
+--
+-rank: Rank
+-suit: Suit
+--
++Selected: Bool {Get; Set;}
++Rank: Rank{get;}
++Suit: Suit{get;}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1240</x><y>7</y><w>210</w><h>190</h></coordinates><panel_attributes>Deck
+--
+-card: list&lt;Card&gt;
+--
++Deck()
++Shuffle
++TakeTopCard(): Card</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>920</x><y>7</y><w>280</w><h>270</h></coordinates><panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+/Board/
+--
+-deck: Deck
+#cardsOnBoard: List&lt;Card&gt;
++MaxCard: int { get; private set&gt;
+--
++Board:(int sizeBoard)
++SelectCard(userInput: String): Void
++Remove(): Void
++Replace(): Void
++CardAddUp(CardOne: Card, CardTwo): int
++CheckForWin(): Bool
++PrintBoard(): Void
+--
+Remove method will remove all 
+Cards that is selected if condition are met
+Replace method will add cards that are empty
+up to the size of board</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>410</x><y>7</y><w>480</w><h>500</h></coordinates><panel_attributes>/&lt;&lt;Abstract&gt;&gt;/
+/Game/
+--
++TEN: const int
++ELEVEN: const int
++THIRTEEN: const int
++leaderboard: Dictionary&lt;string, int&gt;
++PlayerName: string &lt;get, private set&gt;
++HasSurrendered: bool &lt;get&gt;
+--
+&lt;&lt;Constructor&gt;&gt;
+_+Create(int typeOfGame): Game_
+#Game(int sizeOfGame): base(sizeOfGame)
+--
+&lt;&lt;Public&gt;&gt;
++IsStillPlaying(int time): bool
++ChangeName(): void 
++AddToLeaderboard(): void
+--
+/&lt;&lt;Abstract&gt;&gt;/
+/+TypeOfGame: string {get;}/
+/+ConditonToRemove(): bool/
+--
+Abstract properties and methods will need to be inherited in subClasses.
+
+Create method will have a switch statement
+that will create new Game type object
+example: 
+Game game = Game.Create(Game.TEN)
+translation:
+Game game = new Ten();
+
+Game will create a default player name and
+player will be able to change the name 
+at any point of the game or when they win.
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>547</y><w>210</w><h>190</h></coordinates><panel_attributes>Ten
+--
++Ten(): base(Game.TEN)
++TypeOfGame: string {get;}
++ConditonToRemove(): bool
+--
+-CheckKQJT(): Bool
+-CheckForRank(): Bool
+--
+Chances of winning are 
+claimed to be 1 out of ten</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>547</y><w>210</w><h>190</h></coordinates><panel_attributes>Eleven
+--
++Eleven(): base(Game.ELEVEN)
++TypeOfGame: string {get;}
++ConditonToRemove(): bool
+--
+-CheckKQJ(): int
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>547</y><w>210</w><h>190</h></coordinates><panel_attributes>Thirteen
+--
++Thirteen(): base(Game.THIRTEEN)
++TypeOfGame: string {get;}
++ConditonToRemove(): bool
+--
+-CheckKing():Bool
+--
+Chances of winning are 
+Claimed to be about 1 in 8 games</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>1270</x><y>481</y><w>140</w><h>100</h></coordinates><panel_attributes>IEquatable&lt;Card&gt;
+--
++Equal(other:  Card)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1330</x><y>431</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>140</x><y>2</y><w>100</w><h>30</h></coordinates><panel_attributes>ElevenScore.txt</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>2</y><w>100</w><h>30</h></coordinates><panel_attributes>ThirteenScore.txt</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>2</y><w>100</w><h>30</h></coordinates><panel_attributes>TenScore.txt</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>122</y><w>350</w><h>180</h></coordinates><panel_attributes>IOScore
+--
+-FileName: string
+-MAX_SCORE_WRITE: const int
+-FileInput: String[]
+--
++IOScore(type: gameType): constructor
++SaveLeaderBoard(newLeaderboard: &lt;string, int&gt;): void
++GetLeaderBoard(): &lt;string, int&gt;
+--
+-ParseInput(): string[]
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>22</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;-&gt;</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>22</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;-&gt;</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>70</x><y>22</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;-&gt;</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>1350</x><y>190</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1190</x><y>20</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>480</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>500</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>500</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;.
+</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>260</y><w>90</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;20;70;20</additional_attributes></element><element><id>Relation</id><coordinates><x>880</x><y>10</y><w>60</w><h>30</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;40;10</additional_attributes></element></diagram>
